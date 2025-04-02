@@ -1,0 +1,17 @@
+services:
+  proxy_go:
+    build:
+      context: .
+      dockerfile: ./cmd/Dockerfile
+    ports:
+      - "8080:8080"
+    image: proxy-go-image
+    container_name: proxy_go
+    restart: unless-stopped
+    networks:
+      - proxy-network
+
+
+networks:
+  proxy-network:
+    driver: bridge
