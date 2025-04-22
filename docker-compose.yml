@@ -10,8 +10,26 @@ services:
     restart: unless-stopped
     networks:
       - proxy-network
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017
+      - MONGO_DB=proxy_db
 
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - proxy-network
 
 networks:
   proxy-network:
     driver: bridge
+
+volumes:
+  mongodb_data:

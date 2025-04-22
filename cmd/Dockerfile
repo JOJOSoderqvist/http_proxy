@@ -18,6 +18,7 @@ COPY --from=build /var/backend/main /app/main
 COPY --from=build /var/backend/ca.crt /app/ca.crt
 COPY --from=build /var/backend/ca.key /app/ca.key
 COPY --from=build /var/backend/cert.key /app/cert.key
+COPY --from=build /var/backend/params.txt /app/params.txt
 
 WORKDIR /app
 EXPOSE 8080
